@@ -3,11 +3,11 @@ package rest
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/static"
-	cors "github.com/rs/cors/wrapper/gin"
 	"encoding/json"
 	"io/ioutil"
 	"fmt"
 	"net/http"
+	cors "github.com/rs/cors/wrapper/gin"
 )
 
 
@@ -40,6 +40,7 @@ func RunAPI(address string) error {
 
 	r.GET("/search", func(c *gin.Context){
 	
+		c.Header("Access-Control-Allow-Origin","*");
 		// get values from API
 		// 	"github.com/GiterLab/urllib"
 		// req := urllib.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
