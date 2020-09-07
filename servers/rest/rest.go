@@ -3,12 +3,14 @@ package rest
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/static"
+
+	cors "github.com/rs/cors/wrapper/gin"
 )
 
 func RunAPI(address string) error {
 	// Gin 엔진
 	r := gin.Default()
-
+	r.Use(cors.Default())
 	// r.GET("/search", IndexHome)
 	// run server
 	// r.Use(cors.New(cors.Options{
