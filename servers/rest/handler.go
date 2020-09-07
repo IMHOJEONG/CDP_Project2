@@ -19,7 +19,7 @@ type Info struct {
 	Date        string `json:"date"`
 	Explanation string `json:"explanation"`
 	Url         string `json:"url"`
-	HdUrl          string `json:"hdurl"`
+	HdUrl       string `json:"hdurl"`
 	//MediaType      string `json:"media_type"`
 	//ServiceVersion string `json:"service_version"`
 }
@@ -31,8 +31,7 @@ func IndexHome(c *gin.Context) {
 	req := urllib.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 	
 	req.Debug(true)
-	req.Header("Access-Control-Allow-Origin","*");
-	req.
+	req.Header("Access-Control-Allow-Origin","*")
 	strJson, err := req.String()
 	if err != nil {
 		fmt.Println(err)
