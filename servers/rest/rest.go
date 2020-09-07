@@ -3,7 +3,6 @@ package rest
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/static"
-	cors "github.com/rs/cors/wrapper/gin"
 )
 
 func RunAPI(address string) error {
@@ -12,11 +11,11 @@ func RunAPI(address string) error {
 
 	// r.GET("/search", IndexHome)
 	// run server
-	r.Use(cors.New(cors.Options{
-		AllowedOrigins: []string{"*"},
-		AllowCredentials: true,
-		Debug: true,
-	}))
+	// r.Use(cors.New(cors.Options{
+	// 	AllowedOrigins: "*",
+	// 	AllowCredentials: true,
+
+	// }))
 	r.GET("/search", IndexHome)
 	r.Use(static.Serve("/", static.LocalFile("../client/build", true)))	// r.StaticFile("/show","./build/index.html")
 	// r.Static("/","../../build");
