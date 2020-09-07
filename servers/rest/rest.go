@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"fmt"
 	"net/http"
-	cors "github.com/rs/cors/wrapper/gin"
 )
 
 
@@ -21,34 +20,54 @@ type Info struct {
 	//ServiceVersion string `json:"service_version"`
 }
 
+func handler(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Access-Control-Allow-Origin", "*")
+    if (r.Method == "OPTIONS") {
+        w.Header().Set("Access-Control-Allow-Headers", "Authorization") // You can add more headers here if needed
+    } else {
+        // Your code goes here
+    }
+}
+
+
 func RunAPI(address string) error {
 	// Gin 엔진
 	r := gin.Default()
 	// "github.com/gin-contrib/cors"
 
-	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"*"},
-		AllowMethods:     []string{"GET"},
-		AllowHeaders:     []string{"Origin"},
-		ExposeHeaders:    []string{"Content-Length"},
-		AllowCredentials: true,
-	}))
+	// r.Use(cors.New(cors.Options{
+	// 	AllowOrigins:     []string{"*"},
+	// 	AllowMethods:     []string{"GET"},
+	// 	AllowHeaders:     []string{"Origin"},
+	// 	ExposeHeaders:    []string{"Content-Length"},
+	// 	AllowCredentials: true,
+	// }))
 	// r.GET("/search", IndexHome)
 	// run server
-	r.Use(cors.Default())
+	// r.Use(cors.Default())
 	// r.GET("/search", IndexHome)
 
 	r.GET("/search", func(c *gin.Context){
 	
-		c.Header("Access-Control-Allow-Headers","Content-Type,Authorization,Origin")
-		c.Header("Access-Control-Allow-Origin","*")
-		c.Header("Access-Control-Allow-Credentials","true")
-		c.Header("Access-Control-Allow-Methods","GET")
+		// c.Header("Access-Control-Allow-Headers","Content-Type,Authorization,Origin")
+		// c.Header("Access-Control-Allow-Origin","*")
+		// c.Header("Access-Control-Allow-Credentials","true")
+		// c.Header("Access-Control-Allow-Methods","GET")
 		// get values from API
 		// 	"github.com/GiterLab/urllib"
 		// req := urllib.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 		
-		resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
+		client := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
+
+		req, err := http.NewRequest("GET","https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true", nil)
+		req.Header.Add("Access-Control-Allow-Origin","*")
+		resp, err := client.Do(req)
+
+		// resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 	
 		// req.Debug(true)
 		// strJson, err := req.String()
