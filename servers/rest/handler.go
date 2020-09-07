@@ -30,11 +30,6 @@ func IndexHome(c *gin.Context) {
 	// 	"github.com/GiterLab/urllib"
 	// req := urllib.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 	
-	c.Header("Access-Control-Allow-Headers", "Content-Type,Authorization,Origin")
-	c.Header("Access-Control-Allow-Credentials","true")
-	c.Header("Access-Control-Allow-Origin", "*")
-	c.Header("Access-Control-Allow-Methods", "GET,DELETE,POST")
-	
 	resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 
 	// req.Debug(true)
