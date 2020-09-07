@@ -8,12 +8,6 @@ import (
 func RunAPI(address string) error {
 	// Gin 엔진
 	r := gin.Default()
-	// r.Use(cors.New(cors.Options{
-	// 	AllowedOrigins: []string{"*"},
-	// 	AllowCredentials: true,
-	// 	// Enable Debugging for testing, consider disabling in production
-	// 	Debug: true,
-	// })
 	// r.GET("/search", IndexHome)
 	// run server
 	r.GET("/search", IndexHome)
