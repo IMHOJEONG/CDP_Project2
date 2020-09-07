@@ -32,7 +32,7 @@ func IndexHome(c *gin.Context) {
 	
 	resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 
-	// req.Debug(true)
+	req.Debug(true)
 	// strJson, err := req.String()
 	if err != nil {
 		fmt.Println(err)
