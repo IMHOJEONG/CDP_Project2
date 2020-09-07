@@ -12,7 +12,11 @@ func RunAPI(address string) error {
 
 	// r.GET("/search", IndexHome)
 	// run server
-	r.Use(cors.Default());
+	r.Use(cors.New(cors.Options{
+		AllowedOrigins: "*",
+		AllowCredentials: true,
+		Debug: true
+	}));
 	r.GET("/search", IndexHome)
 	r.Use(static.Serve("/", static.LocalFile("../client/build", true)))	// r.StaticFile("/show","./build/index.html")
 	// r.Static("/","../../build");
