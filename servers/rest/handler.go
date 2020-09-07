@@ -29,9 +29,9 @@ func IndexHome(c *gin.Context) {
 	
 	// get values from API
 	req := urllib.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
-	
+	req.Header("Access-Control-Allow-Origin","*")
+	// req.Debug(true)
 
-	req.Debug(true)
 	strJson, err := req.String()
 	if err != nil {
 		fmt.Println(err)
