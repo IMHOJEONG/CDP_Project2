@@ -40,7 +40,10 @@ func RunAPI(address string) error {
 
 	r.GET("/search", func(c *gin.Context){
 	
-		c.Header("Access-Control-Allow-Origin","*");
+		c.Header("Access-Control-Allow-Headers","Content-Type,Authorization,Origin")
+		c.Header("Access-Control-Allow-Origin","*")
+		c.Header("Access-Control-Allow-Credentials","true")
+		c.Header("Access-Control-Allow-Methods","GET")
 		// get values from API
 		// 	"github.com/GiterLab/urllib"
 		// req := urllib.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
