@@ -26,6 +26,7 @@ type Info struct {
 
 func IndexHome(c *gin.Context) {
 	
+	c.Header("Access-Control-Allow-Origin", "*")
 	// get values from API
 	req := urllib.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 	
