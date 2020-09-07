@@ -3,13 +3,14 @@ package rest
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/static"
-	"github.com/gin-contrib/cors"
 )
 
 
 func RunAPI(address string) error {
 	// Gin 엔진
 	r := gin.Default()
+	// "github.com/gin-contrib/cors"
+
 	// r.Use(cors.New(cors.Config{
 	// 	AllowOrigins:     []string{"*"},
 	// 	AllowMethods:     []string{"GET"},
