@@ -48,6 +48,10 @@ function Article(props) {
     const getData = async () => {
         let check = false;
         const api = await axios.get("http://localhost:3000/search",{
+            mode: 'no-cors',
+            method: 'GET',
+            withCredentials: true,
+            credentials: 'same-origin',
             headers: {
                 "Access-Control-Allow-Origin": "*"
             }
