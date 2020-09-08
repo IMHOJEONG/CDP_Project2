@@ -47,8 +47,20 @@ function Article(props) {
     
     const getData = async () => {
         let check = false;
-        const api = await axios.get("http://localhost:3000/search",{
-        }).then((res)=>{
+        const api = await axios.get("http://localhost:3000/search",
+        {
+            method: 'GET',
+                mode: 'no-cors',
+                headers: {
+                    'Access-Control-Allow-Origin': 'https://master-cdp-project2-imhojeong.endpoint.ainize.ai/',
+                    'Content-Type' : 'application/json',
+                    'Acces-Control-Allow-Credentials': 'true'
+                },
+                withCredentials: true,
+                credentials: 'same-origin',
+        
+        }
+        ).then((res)=>{
             return res.data
         });
 
