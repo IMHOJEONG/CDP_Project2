@@ -52,9 +52,7 @@ func RunAPI(address string) error {
 				Method: "GET",
 				URL: reqURL,
 				Header: map[string] []string {
-					"Access-Control-Allow-Origin": {"*"},
-					"Access-Control-Allow-Credentials": {"true"},
-					"Access-Control-Allow-Methods": {"GET"},
+					"Access-Control-Allow-Origin": {"https://master-cdp-project2-imhojeong.endpoint.ainize.ai"},
 				},
 				
 			}
