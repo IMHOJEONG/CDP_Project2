@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const ArticleDiv = styled.div`
     display : flex; 
+    flex-direction: column;
 `;
 
 const WordDiv = styled.div`
@@ -14,7 +15,6 @@ const WordDiv = styled.div`
 `;
 
 const ImageDiv = styled.img`
-    width: 10em;
     height: 20em;
     padding:3px;
    border:3px solid #021a40;
@@ -76,7 +76,7 @@ function Article(props) {
         <ArticleDiv>
             <ImageDiv src={data.url} />
             <WordDiv>
-                <TitleDiv>{data.title} - {data.date}</TitleDiv>                
+                <TitleDiv>{data.date} : {data.title}</TitleDiv>                
                 { data.explanation.map((item) => {
                     return <ExplanationDiv>{item}.</ExplanationDiv>; 
                 })}
