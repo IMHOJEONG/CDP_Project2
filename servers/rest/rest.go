@@ -50,8 +50,6 @@ func RunAPI(address string) error {
 			c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, ResponseType, accept, origin, Cache-Control, X-Requested-With")
 			c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT, DELETE")
 
-
-
 			reqURL, _ := url.Parse("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 			
 			req := &http.Request {
@@ -59,6 +57,9 @@ func RunAPI(address string) error {
 				URL: reqURL,
 				Header: map[string] []string {
 					"Access-Control-Allow-Origin": {"*"},
+					"Access-Control-Allow-Credentials": {"true"},
+					"Access-Control-Allow-Headers": {"Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "ResponseType", "accept", "origin", "Cache-Control", "X-Requested-With"},
+					"Access-Control-Allow-Methods": {"POST", "OPTIONS", "GET", "PUT", "DELETE"},
 				},
 				
 			}
