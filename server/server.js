@@ -68,6 +68,6 @@ app.get('/', (req, res) => {
 const port = 3000;
 app.listen(port, ()=>{console.log(
     `Listening on port ${port}`);
-    console.log("localhost:3000");
+    console.log("127.0.0.1:3000");
     }
 );
