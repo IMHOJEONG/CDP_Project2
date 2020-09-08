@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"fmt"
 	"net/http"
+	"net/url"
 	"github.com/gin-contrib/cors"
 
 )
@@ -45,31 +46,43 @@ func RunAPI(address string) error {
 	v1 := r.Group("/search")
 	{
 		v1.GET("/", func(c *gin.Context){
-			resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
+			
+			reqURL, _ := url.Parse("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
+			
+			req := &http.Request {
+				Method: "GET",
+				URL: reqURL,
+				Header: map[string] []string {
+					"Acess-Control-Allow-Origin": {"*"},
+				},
+			}
+			
+			resp, err := http.DefaultClient.Do( req )
+
 		// resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 		// req.Debug(true)
 		// strJson, err := req.String()
-		if err != nil {
-			fmt.Println(err)
-		}
-		// req.Heade;
-		var info Info
-		defer resp.Body.Close()
+			if err != nil {
+				fmt.Println(err)
+			}
+			// req.Heade;
+			var info Info
+			defer resp.Body.Close()
+			
+			// // JSON decoding
+			// err = json.Unmarshal([]byte(strJson), &info)
+			// if err != nil {
+			// 	fmt.Println("Parsing error!!")
+			// }
 		
-		// // JSON decoding
-		// err = json.Unmarshal([]byte(strJson), &info)
-		// if err != nil {
-		// 	fmt.Println("Parsing error!!")
-		// }
-	
-		// c.JSON(http.StatusOK, info)
-		strJson, err := ioutil.ReadAll(resp.Body)
-		err = json.Unmarshal([]byte(strJson), &info)
-		if err != nil {
-			fmt.Println("Parsing error!!")
-		}
-		c.JSON(http.StatusOK, info)
-		})
+			// c.JSON(http.StatusOK, info)
+			strJson, err := ioutil.ReadAll(resp.Body)
+			err = json.Unmarshal([]byte(strJson), &info)
+			if err != nil {
+				fmt.Println("Parsing error!!")
+			}
+			c.JSON(http.StatusOK, info)
+			})
 	}
 
 
