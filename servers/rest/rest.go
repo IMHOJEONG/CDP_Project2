@@ -35,7 +35,6 @@ func RunAPI(address string) error {
 	{
 		v1.GET("/", func(c *gin.Context){
 
-
 			reqURL, _ := url.Parse("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 			
 			req := &http.Request {
@@ -44,8 +43,7 @@ func RunAPI(address string) error {
 				Header: map[string] []string {
 					"Access-Control-Allow-Origin": {"*"},
 					"Access-Control-Allow-Credentials": {"true"},
-					"Access-Control-Allow-Headers": {"Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "ResponseType", "accept", "origin", "Cache-Control", "X-Requested-With"},
-					"Access-Control-Allow-Methods": {"POST", "OPTIONS", "GET", "PUT", "DELETE"},
+					"Access-Control-Allow-Methods": {"GET"},
 				},
 			}
 			
@@ -87,9 +85,6 @@ func RunAPI(address string) error {
 	// 	// get values from API
 	// 	// 	"github.com/GiterLab/urllib"
 	// 	// req := urllib.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
-		
-
-		
 	// })
 	r.Use(static.Serve("/", static.LocalFile("../client/build", true)))	// r.StaticFile("/show","./build/index.html")
 	return r.Run(address)
