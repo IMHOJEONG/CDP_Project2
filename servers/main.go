@@ -8,5 +8,5 @@ import (
 
 func main() {
 	log.Println("Main log....")
-	log.Fatal(rest.RunAPI("0.0.0.0:3000"))
+	log.Fatal(rest.RunAPI("localhost:3000"))
 }
