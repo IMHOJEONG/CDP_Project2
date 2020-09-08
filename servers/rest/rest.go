@@ -20,14 +20,7 @@ type Info struct {
 	//ServiceVersion string `json:"service_version"`
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
-    w.Header().Set("Access-Control-Allow-Origin", "*")
-    if (r.Method == "OPTIONS") {
-        w.Header().Set("Access-Control-Allow-Headers", "Authorization") // You can add more headers here if needed
-    } else {
-        // Your code goes here
-    }
-}
+
 
 
 func RunAPI(address string) error {
@@ -47,6 +40,7 @@ func RunAPI(address string) error {
 	// r.Use(cors.Default())
 	// r.GET("/search", IndexHome)
 
+
 	r.GET("/search", func(c *gin.Context){
 	
 		// c.Header("Access-Control-Allow-Headers","Content-Type,Authorization,Origin")
@@ -57,18 +51,9 @@ func RunAPI(address string) error {
 		// 	"github.com/GiterLab/urllib"
 		// req := urllib.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 		
-		client := &http.Client{
-			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-				return http.ErrUseLastResponse
-			},
-		}
 
-		req, err := http.NewRequest("GET","https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true", nil)
-		req.Header.Add("Access-Control-Allow-Origin","*")
-		resp, err := client.Do(req)
-
+		resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 		// resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
-	
 		// req.Debug(true)
 		// strJson, err := req.String()
 		if err != nil {
@@ -90,11 +75,8 @@ func RunAPI(address string) error {
 		if err != nil {
 			fmt.Println("Parsing error!!")
 		}
-	
 		c.JSON(http.StatusOK, info)
 	})
-	
-
 	r.Use(static.Serve("/", static.LocalFile("../client/build", true)))	// r.StaticFile("/show","./build/index.html")
 	return r.Run(address)
 }
