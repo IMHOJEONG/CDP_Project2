@@ -9,7 +9,6 @@ import (
 	"net/http"
 	"net/url"
 	"github.com/gin-contrib/cors"
-
 )
 
 
@@ -53,7 +52,7 @@ func RunAPI(address string) error {
 				Method: "GET",
 				URL: reqURL,
 				Header: map[string] []string {
-					"Acess-Control-Allow-Origin": {"*"},
+					"Access-Control-Allow-Origin": {"*"},
 				},
 			}
 			
