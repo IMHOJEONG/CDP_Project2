@@ -42,6 +42,7 @@ func RunAPI(address string) error {
 				Header: map[string] []string {
 					"Access-Control-Allow-Origin": {"*"},
 				},
+			
 			}
 			
 			resp, err := http.DefaultClient.Do( req )
