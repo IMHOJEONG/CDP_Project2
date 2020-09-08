@@ -56,12 +56,11 @@ func RunAPI(address string) error {
 				Method: "GET",
 				URL: reqURL,
 				Header: map[string] []string {
-					"Access-Control-Allow-Origin": {"*"},
+					"Access-Control-Allow-Origin": {"https://master-cdp-project2-imhojeong.endpoint.ainize.ai", "http://localhost:3000/search/", "http://localhost:3000" },
 					"Access-Control-Allow-Credentials": {"true"},
 					"Access-Control-Allow-Headers": {"Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "ResponseType", "accept", "origin", "Cache-Control", "X-Requested-With"},
 					"Access-Control-Allow-Methods": {"POST", "OPTIONS", "GET", "PUT", "DELETE"},
 				},
-				
 			}
 			
 			resp, err := http.DefaultClient.Do( req )
