@@ -23,20 +23,18 @@ type Info struct {
 }
 
 
-
-
 func RunAPI(address string) error {
 	// Gin 엔진
 	r := gin.Default()
 	// "github.com/gin-contrib/cors"
 
-	// r.Use(cors.New(cors.Options{
-	// 	AllowOrigins:     []string{"*"},
-	// 	AllowMethods:     []string{"GET"},
-	// 	AllowHeaders:     []string{"Origin"},
-	// 	ExposeHeaders:    []string{"Content-Length"},
-	// 	AllowCredentials: true,
-	// }))
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"GET"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}))
 	// r.GET("/search", IndexHome)
 	// run server
 	r.Use(cors.Default())
