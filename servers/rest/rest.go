@@ -53,7 +53,6 @@ func RunAPI(address string) error {
 				URL: reqURL,
 				Header: map[string] []string {
 					"Access-Control-Allow-Origin": {"*"},
-					"Access-Control-Allow-Headers": {"Origin", "X-Requested-With", "Content-Type","Accept"},
 				},
 			}
 			
