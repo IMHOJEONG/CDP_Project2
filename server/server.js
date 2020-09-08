@@ -19,8 +19,9 @@ app.use('/search', (req, res)=> {
                 method: 'GET',
                 mode: 'no-cors',
                 headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type' : 'text/plain'
+                    'Access-Control-Allow-Origin': 'https://master-cdp-project2-imhojeong.endpoint.ainize.ai/',
+                    'Content-Type' : 'text/plain',
+                    'Acces-Control-Allow-Credentials': 'true'
                 },
                 withCredentials: true,
                 credentials: 'same-origin',
@@ -35,8 +36,9 @@ app.use('/search', (req, res)=> {
                             method: 'GET',
                             mode: 'no-cors',
                             headers: {
-                                'Access-Control-Allow-Origin': '*',
-                                'Content-Type' : 'text/plain'
+                                'Access-Control-Allow-Origin': 'https://master-cdp-project2-imhojeong.endpoint.ainize.ai/',
+                                'Content-Type' : 'text/plain',
+                                'Acces-Control-Allow-Credentials': 'true'
                             },
                             withCredentials: true,
                             credentials: 'same-origin',
