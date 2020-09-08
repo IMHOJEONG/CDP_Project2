@@ -47,8 +47,8 @@ function Article(props) {
     
     const getData = async () => {
         let check = false;
-        const api = await axios.get("http://localhost:3000/search"
-        ).then((res)=>{
+        const api = await axios.get("http://localhost:3000/search")
+        .then((res)=>{
             return res.data
         });
 

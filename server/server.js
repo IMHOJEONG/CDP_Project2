@@ -20,7 +20,7 @@ app.use('/search', (req, res)=> {
                 mode: 'no-cors',
                 headers: {
                     'Access-Control-Allow-Origin': 'https://master-cdp-project2-imhojeong.endpoint.ainize.ai/',
-                    'Content-Type' : 'application/json',
+                    'Content-Type' : 'text/plain',
                     'Acces-Control-Allow-Credentials': 'true'
                 },
                 withCredentials: true,
@@ -37,7 +37,7 @@ app.use('/search', (req, res)=> {
                             mode: 'no-cors',
                             headers: {
                                 'Access-Control-Allow-Origin': 'https://master-cdp-project2-imhojeong.endpoint.ainize.ai/',
-                                'Content-Type' : 'application/json',
+                                'Content-Type' : 'text/plain',
                                 'Acces-Control-Allow-Credentials': 'true'
                             },
                             withCredentials: true,
