@@ -52,7 +52,8 @@ func RunAPI(address string) error {
 				Method: "GET",
 				URL: reqURL,
 				Header: map[string] []string {
-					"Access-Control-Allow-Origin": {"https://master-cdp-project2-imhojeong.endpoint.ainize.ai/", "http://localhost:3000/search/"},
+					"Access-Control-Allow-Origin": {"*"},
+					"Access-Control-Allow-Headers": {"Origin", "X-Requested-With", "Content-Type","Accept"}
 				},
 			}
 			
