@@ -47,7 +47,7 @@ function Article(props) {
     
     const getData = async () => {
         let check = false;
-        const api = await axios.get("http://127.0.0.1:3000/search")
+        const api = await axios.get("https://master-cdp-project2-imhojeong.endpoint.ainize.ai/search")
         .then((res)=>{
             return res.data
         });
