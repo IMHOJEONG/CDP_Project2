@@ -10,7 +10,6 @@ import (
 	"net/url"
 )
 
-
 type Info struct {
 	Title       string `json:"title"`
 	Date        string `json:"date"`
