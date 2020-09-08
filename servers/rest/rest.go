@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"github.com/gin-contrib/cors"
 )
 
 
@@ -28,25 +27,14 @@ func RunAPI(address string) error {
 	r := gin.Default()
 	// "github.com/gin-contrib/cors"
 
-	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"*"},
-		AllowMethods:     []string{"GET"},
-		AllowHeaders:     []string{"Origin"},
-		ExposeHeaders:    []string{"Content-Length"},
-		AllowCredentials: true,
-	}))
 	// r.GET("/search", IndexHome)
 	// run server
-	r.Use(cors.Default())
 	// r.GET("/search", IndexHome)
 
 	v1 := r.Group("/search")
 	{
 		v1.GET("/", func(c *gin.Context){
-			c.Writer.Header().Set("Access-Control-Allow-Origin", "https://master-cdp-project2-imhojeong.endpoint.ainize.ai")
-			c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
-			c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, ResponseType, accept, origin, Cache-Control, X-Requested-With")
-			c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT, DELETE")
+
 
 			reqURL, _ := url.Parse("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 			
@@ -54,7 +42,7 @@ func RunAPI(address string) error {
 				Method: "GET",
 				URL: reqURL,
 				Header: map[string] []string {
-					"Access-Control-Allow-Origin": {"https://master-cdp-project2-imhojeong.endpoint.ainize.ai", "http://localhost:3000/search/", "http://localhost:3000" },
+					"Access-Control-Allow-Origin": {"*"},
 					"Access-Control-Allow-Credentials": {"true"},
 					"Access-Control-Allow-Headers": {"Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "ResponseType", "accept", "origin", "Cache-Control", "X-Requested-With"},
 					"Access-Control-Allow-Methods": {"POST", "OPTIONS", "GET", "PUT", "DELETE"},
@@ -62,7 +50,7 @@ func RunAPI(address string) error {
 			}
 			
 			resp, err := http.DefaultClient.Do( req )
-
+			
 		// resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 		// req.Debug(true)
 		// strJson, err := req.String()
