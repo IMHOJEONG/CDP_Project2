@@ -7,6 +7,8 @@ import (
 	"io/ioutil"
 	"fmt"
 	"net/http"
+	"github.com/gin-contrib/cors"
+
 )
 
 
@@ -37,22 +39,13 @@ func RunAPI(address string) error {
 	// }))
 	// r.GET("/search", IndexHome)
 	// run server
-	// r.Use(cors.Default())
+	r.Use(cors.Default())
 	// r.GET("/search", IndexHome)
 
-
-	r.GET("/search", func(c *gin.Context){
-	
-		// c.Header("Access-Control-Allow-Headers","Content-Type,Authorization,Origin")
-		// c.Header("Access-Control-Allow-Origin","*")
-		// c.Header("Access-Control-Allow-Credentials","true")
-		// c.Header("Access-Control-Allow-Methods","GET")
-		// get values from API
-		// 	"github.com/GiterLab/urllib"
-		// req := urllib.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
-		
-
-		resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
+	v1 := r.Group("/search")
+	{
+		v1.GET("/", func(c *gin.Context){
+			resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 		// resp, err := http.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
 		// req.Debug(true)
 		// strJson, err := req.String()
@@ -76,7 +69,23 @@ func RunAPI(address string) error {
 			fmt.Println("Parsing error!!")
 		}
 		c.JSON(http.StatusOK, info)
-	})
+		})
+	}
+
+
+	// r.GET("/search", func(c *gin.Context){
+	
+	// 	// c.Header("Access-Control-Allow-Headers","Content-Type,Authorization,Origin")
+	// 	// c.Header("Access-Control-Allow-Origin","*")
+	// 	// c.Header("Access-Control-Allow-Credentials","true")
+	// 	// c.Header("Access-Control-Allow-Methods","GET")
+	// 	// get values from API
+	// 	// 	"github.com/GiterLab/urllib"
+	// 	// req := urllib.Get("https://api.nasa.gov/planetary/apod?api_key=rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld&hd=true")
+		
+
+		
+	// })
 	r.Use(static.Serve("/", static.LocalFile("../client/build", true)))	// r.StaticFile("/show","./build/index.html")
 	return r.Run(address)
 }
