@@ -5,7 +5,7 @@ const path = require('path');
 const axios = require('axios');
 const API_KEY = "rvU2JWqSHNFizqfke1599aJG4Ax3GvKmQYXPfSld";
 const dateNow = new Date();
-dataNow.setDate(dataNow.getDate()-1);
+dateNow.setDate(dateNow.getDate()-1);
 const dateYesterday = dateNow.getFullYear() +"-"+ (dateNow.getMonth()+1) +"-"+ dateNow.getDate();
 app.use(cors());
 
@@ -26,7 +26,7 @@ app.use('/search', (req, res)=> {
                 credentials: 'same-origin',
             },)
         .then((makedata)=>{
-            console.log(dataNow.getDate()-1);
+            console.log(dateNow.getDate()-1);
             if(makedata.data.title == ""){
                 const api2 = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&hd=true&date=${dateYesterday}`;
     // 데이터 data 변수로 변환 
