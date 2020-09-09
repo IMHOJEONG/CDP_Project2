@@ -24,12 +24,13 @@ const ImageDiv = styled.img`
 
 const TitleDiv = styled.div`
     text-align: center;
-    font-size: 25px;
+    font-size: 35px;
     font-family: 'Passion One', cursive;
 `;
 
 const ExplanationDiv = styled.div`
     font-family: 'Kufam', cursive;
+    font-size: 25px;
 `;
 
 
@@ -48,15 +49,17 @@ function Article(props) {
     const getData = async () => {
         let check = false;
         const api = await axios.get("https://master-cdp-project2-imhojeong.endpoint.ainize.ai/search")
+        // const api = await axios.get("http://127.0.0.1:3000/search")
         .then((res)=>{
             return res.data
         });
 
         if(!check) {
+            console.log(api.data)
             setDatas(
                 {
                     date: api.data.date,
-                    explanation: api.data.explanation.split("."),
+                    explanation: api.data.explanation.split(/([.?!]+\s+)/g),
                     hdurl: api.data.hdurl,
                     title: api.data.title,
                     url: api.data.url,
@@ -78,7 +81,7 @@ function Article(props) {
             <WordDiv>
                 <TitleDiv>{data.date} : {data.title}</TitleDiv>                
                 { data.explanation.map((item) => {
-                    return <ExplanationDiv>{item}.</ExplanationDiv>; 
+                    return <ExplanationDiv>{item}</ExplanationDiv>; 
                 })}
             </WordDiv>
         </ArticleDiv>

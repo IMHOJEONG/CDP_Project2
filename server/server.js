@@ -28,36 +28,34 @@ app.use('/search', (req, res)=> {
             },)
         .then((makedata)=>{
             console.log(dateNow.getDate()-1);
-            if(makedata.data.title == ""){
-                const api2 = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&hd=true&date=${dateYesterday}`;
-    // 데이터 data 변수로 변환 
-                axios.get(api2,   
-                        {
-                            method: 'GET',
-                            mode: 'no-cors',
-                            headers: {
-                                'Access-Control-Allow-Origin': 'https://master-cdp-project2-imhojeong.endpoint.ainize.ai/',
-                                'Content-Type' : 'application/json',
-                                'Acces-Control-Allow-Credentials': 'true'
-                            },
-                            withCredentials: true,
-                            credentials: 'same-origin',
-                        },)
-                        .then((makedata)=>{
-                            res.send({
-                                data: makedata.data
-                            });
-                        }).catch(function(error){
-                            console.log(error);
-                        });
-            }
-            else {
+            
                 res.send({
                     data: makedata.data
                 });
-            }
+            
         }).catch(function(error){
             console.log(error);
+            const api2 = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&hd=true&date=${dateYesterday}`;
+            // 데이터 data 변수로 변환 
+                        axios.get(api2,   
+                                {
+                                    method: 'GET',
+                                    mode: 'no-cors',
+                                    headers: {
+                                        'Access-Control-Allow-Origin': 'https://master-cdp-project2-imhojeong.endpoint.ainize.ai/',
+                                        'Content-Type' : 'application/json',
+                                        'Acces-Control-Allow-Credentials': 'true'
+                                    },
+                                    withCredentials: true,
+                                    credentials: 'same-origin',
+                                },)
+                                .then((makedata)=>{
+                                    res.send({
+                                        data: makedata.data
+                                    });
+                                }).catch(function(error){
+                                    console.log(error);
+                                });
         });
 });
 
