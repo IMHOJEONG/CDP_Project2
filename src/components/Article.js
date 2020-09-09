@@ -31,6 +31,7 @@ const TitleDiv = styled.div`
 const ExplanationDiv = styled.div`
     font-family: 'Kufam', cursive;
     font-size: 25px;
+    border: thick double #32a1ce;
 `;
 
 
@@ -59,7 +60,7 @@ function Article(props) {
             setDatas(
                 {
                     date: api.data.date,
-                    explanation: api.data.explanation.split(/([.?!]+\s+)/g),
+                    explanation: api.data.explanation.split(". "),
                     hdurl: api.data.hdurl,
                     title: api.data.title,
                     url: api.data.url,
@@ -81,7 +82,9 @@ function Article(props) {
             <WordDiv>
                 <TitleDiv>{data.date} : {data.title}</TitleDiv>                
                 { data.explanation.map((item) => {
-                    return <ExplanationDiv>{item}</ExplanationDiv>; 
+                    return <ExplanationDiv>
+                        {item}
+                        </ExplanationDiv>; 
                 })}
             </WordDiv>
         </ArticleDiv>
