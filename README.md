@@ -2,6 +2,7 @@
 
 [![Run on Ainize](https://ainize.ai/images/run_on_ainize_button.svg)](https://ainize.web.app/redirect?git_repo=https://github.com/IMHOJEONG/CDP_Project2)
 
+
 ## 개요 
 
 NASA OPEN API를 활용해 매일매일 바뀌는 우주에서의 하루 중 가장 눈에 띄는 현상과 그에 관한 설명을 보여주는 웹 페이지입니다. 
